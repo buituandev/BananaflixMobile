@@ -24,19 +24,13 @@ export default function AppNavigation() {
       >
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
-        <Stack.Screen
-          name="BottomTabNavigator"
-          component={BottomTabNavigator}
-        />
+        <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} />
         <Stack.Screen name="MovieDetails" component={MovieDetails} />
         <Stack.Screen name="MoviesVideoPlayer" component={MoviesVideoPlayer} />
         <Stack.Screen name="ProfileDetail" component={ProfileDetail} />
         <Stack.Screen name="EditAccount" component={EditAccount} />
         <Stack.Screen name="PolicyScreen" component={PolicyScreen} />
-        <Stack.Screen
-          name="NotificationScreens"
-          component={NotificationScreens}
-        />
+        <Stack.Screen name="NotificationScreens" component={NotificationScreens} />
         <Stack.Screen name="AboutScreen" component={AboutScreen} />
         <Stack.Screen name="HelpSupportScreen" component={HelpSupportScreen} />
       </Stack.Navigator>

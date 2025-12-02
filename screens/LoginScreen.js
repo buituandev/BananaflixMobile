@@ -15,7 +15,6 @@ import { userloginAPI, checkAuthAPI } from '../api/userloginAPI';
 import { useNavigation } from '@react-navigation/native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../context/ThemeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

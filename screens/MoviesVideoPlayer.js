@@ -13,7 +13,7 @@ import SystemNavigationBar from 'react-native-system-navigation-bar';
 import Orientation from 'react-native-orientation-locker';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
-import React, {useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 export default function MoviesVideoPlayer({ route }) {
   const { movieTitle } = route.params;
@@ -60,11 +60,11 @@ export default function MoviesVideoPlayer({ route }) {
   };
 
   const handleZoomIn = () => {
-    setResizeMode('none');
+    setResizeMode('cover');
   };
 
   const handleZoomOut = () => {
-    setResizeMode('cover');
+    setResizeMode('none');
   };
 
   const formatDuration = durationInSeconds => {
@@ -73,9 +73,8 @@ export default function MoviesVideoPlayer({ route }) {
     const seconds = Math.floor(durationInSeconds % 60);
 
     const formattedHours = hours > 0 ? `${hours}:` : '';
-    const formattedMinutes = `${
-      minutes < 10 && hours > 0 ? '0' : ''
-    }${minutes}:`;
+    const formattedMinutes = `${minutes < 10 && hours > 0 ? '0' : ''
+      }${minutes}:`;
     const formattedSeconds = `${seconds < 10 ? '0' : ''}${seconds}`;
 
     return `${formattedHours}${formattedMinutes}${formattedSeconds}`;
