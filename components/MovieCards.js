@@ -14,8 +14,10 @@ import { useTheme } from '../context/ThemeContext';
 import { hexToRGBA } from '../utils/colorUtils';
 import { getMovieRating, getMovieTitle } from '../utils/movieUtils';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
 export default function MovieCards({ navigation, refresh, genreID, label, movies }) {
+  const navigation = useNavigation()
   const [moviesList, setMoviesList] = useState(
     Array.isArray(movies) ? movies : [],
   );

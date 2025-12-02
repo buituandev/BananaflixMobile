@@ -36,8 +36,7 @@ import { Snackbar } from 'react-native-paper';
 
 const { width } = Dimensions.get('window');
 
-export default function MovieDetails({ route }) {
-  const navigation = useNavigation();
+export default function MovieDetails({ route, navigation }) {
   const { movie } = route.params;
   const { colors } = useTheme();
   const styles = getStyles(colors);

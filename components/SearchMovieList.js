@@ -10,6 +10,7 @@ import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { hexToRGBA } from '../utils/colorUtils';
+import { useNavigation } from '@react-navigation/native';
 import { getMovieRating, getMovieTitle } from '../utils/movieUtils';
 
 export default function SearchMovieList({ navigation, data }) {

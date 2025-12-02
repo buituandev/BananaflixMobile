@@ -14,9 +14,11 @@ import LinearGradient from 'react-native-linear-gradient';
 import { hexToRGBA } from '../utils/colorUtils';
 import { getMovieRating, getMovieTitle } from '../utils/movieUtils';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 
-export default function MylistMovies({ navigation, mylist, label }) {
+export default function MylistMovies({ mylist, label }) {
   const [moviesList, setMoviesList] = useState([]);
+  const navigation = useNavigation();
   const { colors } = useTheme();
   const styles = getStyles(colors);
 

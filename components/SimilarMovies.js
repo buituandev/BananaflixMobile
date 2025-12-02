@@ -12,15 +12,19 @@ import { useTheme } from '../context/ThemeContext';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { hexToRGBA } from '../utils/colorUtils';
 import { getMovieRating, getMovieTitle } from '../utils/movieUtils';
+import { useNavigation } from '@react-navigation/native';
 
-const PADDING = 16; 
-const GAP = 16;     
+const PADDING = 16;
+const GAP = 16;
 const { width } = Dimensions.get('window');
 
 const ITEM_WIDTH = (width - (PADDING * 2) - GAP) / 2;
 
 
-export default function SimilarMovies({ navigation, similarMoviesList }) {
+
+
+export default function SimilarMovies({ similarMoviesList }) {
+  const navigation = useNavigation();
   const { colors } = useTheme();
   const styles = getStyles(colors, ITEM_WIDTH);
 
@@ -34,7 +38,7 @@ export default function SimilarMovies({ navigation, similarMoviesList }) {
       keyExtractor={item => item._id}
       renderItem={({ item }) => (
         <TouchableOpacity
-          style={styles.itemContainer} 
+          style={styles.itemContainer}
           onPress={() => handleSimilarMovies(item)}
         >
           <View style={styles.cardWrapper}>
@@ -64,18 +68,18 @@ export default function SimilarMovies({ navigation, similarMoviesList }) {
 }
 
 
-const getStyles = (themeColors, itemWidth) => 
+const getStyles = (themeColors, itemWidth) =>
   StyleSheet.create({
     listContainer: {
-      paddingHorizontal: PADDING, 
+      paddingHorizontal: PADDING,
       gap: GAP,
       marginBottom: 16,
     },
     columnWrapper: {
-      gap: GAP, 
+      gap: GAP,
     },
     itemContainer: {
-      width: itemWidth, 
+      width: itemWidth,
       borderRadius: 12,
     },
     cardWrapper: {
@@ -85,8 +89,8 @@ const getStyles = (themeColors, itemWidth) =>
       backgroundColor: themeColors.surface,
     },
     moviePoster: {
-      width: '100%', 
-      height: 250, 
+      width: '100%',
+      height: 250,
       resizeMode: 'cover',
     },
     ratingPill: {
