@@ -60,11 +60,11 @@ export default function MoviesVideoPlayer({ route }) {
   };
 
   const handleZoomIn = () => {
-    setResizeMode('cover');
+    setResizeMode('none');
   };
 
   const handleZoomOut = () => {
-    setResizeMode('none');
+    setResizeMode('cover');
   };
 
   const formatDuration = durationInSeconds => {
@@ -222,14 +222,14 @@ export default function MoviesVideoPlayer({ route }) {
               {resizeMode === 'cover' ? (
                 <TouchableOpacity onPress={() => handleZoomIn()}>
                   <Image
-                    source={require('../assests/fullscreen.png')}
+                    source={require('../assests/exit-fullscreen.png')}
                     style={styles.zoomIcon}
                   />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity onPress={() => handleZoomOut()}>
                   <Image
-                    source={require('../assests/exit-fullscreen.png')}
+                    source={require('../assests/fullscreen.png')}
                     style={styles.zoomIcon}
                   />
                 </TouchableOpacity>
