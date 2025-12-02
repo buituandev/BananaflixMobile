@@ -15,22 +15,6 @@ import { useTheme } from '../context/ThemeContext';
 const SettingsScreen = ({ navigation, route }) => {
   const { colors } = useTheme();
   const styles = getStyles(colors);
-
-  const [version, setVersion] = useState('Version 1.0.0');
-
-  useEffect(() => {
-    const getVersion = async () => {
-      try {
-        const DeviceInfo = await import('react-native-device-info');
-        const appVersion = await DeviceInfo.getVersion();
-        setVersion(`Version ${appVersion}`);
-      } catch (e) {
-        setVersion('Version 1.0.0');
-      }
-    };
-    getVersion();
-  }, []);
-
   const handleLogout = async () => {
     try {
       const response = await userLogoutAPI();
@@ -213,7 +197,7 @@ const SettingsScreen = ({ navigation, route }) => {
               <Text
                 style={[styles.cardDescription, { color: colors.textSecondary }]}
               >
-                {version}
+                About us
               </Text>
             </View>
           </View>
