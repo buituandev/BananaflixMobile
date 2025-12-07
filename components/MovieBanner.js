@@ -80,7 +80,7 @@ export default function MovieBanner({
               <TouchableOpacity
                 style={styles.posterPlayButton}
                 onPress={() =>
-                  posterPlayButton(item._id, item.downloadLink, item.title)
+                  posterPlayButton(item)
                 }
               >
                 <IonIcon name="play" size={28} color={colors.accentOn} />

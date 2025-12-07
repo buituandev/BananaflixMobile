@@ -8,8 +8,7 @@ import { useTheme } from '../context/ThemeContext';
 
 const Tab = createBottomTabNavigator();
 
-export default function BottomTabNavigator({ route }) {
-  const pr = route.params;
+export default function BottomTabNavigator() {
   const { colors } = useTheme();
 
   return (
@@ -37,7 +36,6 @@ export default function BottomTabNavigator({ route }) {
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
-        initialParams={pr}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
@@ -49,7 +47,6 @@ export default function BottomTabNavigator({ route }) {
       <Tab.Screen
         name="SearchScreen"
         component={SearchScreen}
-        initialParams={pr}
         options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color, size }) => (
@@ -60,7 +57,6 @@ export default function BottomTabNavigator({ route }) {
 
       <Tab.Screen
         name="SettingsScreen"
-        initialParams={pr}
         component={SettingsScreen}
         options={{
           tabBarLabel: 'Dashboard',

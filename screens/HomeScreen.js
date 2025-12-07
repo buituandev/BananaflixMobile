@@ -114,15 +114,11 @@ export default function HomeScreen({ navigation, route }) {
     }, [])
   );
 
-  const handleBanner = movie => {
-    console.log('Handle banner', movie);
-  };
-
-  const posterPlayButton = (movieID, movieLink, movieTitle) => {
+  const posterPlayButton = (item) => {
     navigation.navigate('MoviesVideoPlayer', {
-      movieID,
-      movieLink,
-      movieTitle,
+      movieID: item._id,
+      movieLink: item.downloadLink,
+      movieTitle: item.title,
     });
   };
 
@@ -194,7 +190,6 @@ export default function HomeScreen({ navigation, route }) {
         <MovieBanner
           moviesList={moviesList}
           mylist={mylist}
-          handleBanner={handleBanner}
           posterPlayButton={posterPlayButton}
           posterInfoButton={posterInfoButton}
           onAddToList={handleAddToList}

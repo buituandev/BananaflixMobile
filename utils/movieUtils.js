@@ -2,7 +2,7 @@ export const getMovieTitle = movie => {
   if (!movie) {
     return 'Untitled';
   }
-
+  
   const candidates = [
     movie.title,
     movie.originalTitle,
