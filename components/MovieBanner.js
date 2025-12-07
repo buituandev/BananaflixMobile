@@ -53,19 +53,15 @@ export default function MovieBanner({
           style={styles.linearGradient}
         >
           <View style={styles.contentContainer}>
-            {/* Title */}
             <Text style={styles.movieTitle} numberOfLines={2}>
               {getMovieTitle(item)}
             </Text>
-
             {/* Action Buttons */}
             <View style={styles.actionsContainer}>
-              {/* My List button */}
               <TouchableOpacity
                 style={styles.myListButton}
-                onPress={() => onAddToList(item)} // Use the prop
+                onPress={() => onAddToList(item)}
               >
-                {/* Change from mylist.some() to mylist.includes() */}
                 {mylist.includes(item._id) ? (
                   <IonIcon
                     name="checkmark-circle"
@@ -81,8 +77,6 @@ export default function MovieBanner({
                 )}
                 <Text style={styles.myListText}>My List</Text>
               </TouchableOpacity>
-
-              {/* Play button */}
               <TouchableOpacity
                 style={styles.posterPlayButton}
                 onPress={() =>
@@ -93,7 +87,6 @@ export default function MovieBanner({
                 <Text style={styles.playText}>Trailer</Text>
               </TouchableOpacity>
 
-              {/* Info button */}
               <TouchableOpacity
                 style={styles.posterInfoButton}
                 onPress={() => posterInfoButton(item)}

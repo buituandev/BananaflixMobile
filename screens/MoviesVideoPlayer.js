@@ -6,7 +6,6 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import Video from 'react-native-video';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
@@ -15,9 +14,8 @@ import IonIcon from 'react-native-vector-icons/Ionicons';
 import Slider from '@react-native-community/slider';
 import React, { useRef, useState, useEffect } from 'react';
 
-export default function MoviesVideoPlayer({ route }) {
+export default function MoviesVideoPlayer({ navigation, route }) {
   const { movieTitle } = route.params;
-  const navigation = useNavigation();
   const [videoPressed, setVideoPressed] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isMute, setIsMute] = useState(false);
@@ -90,7 +88,7 @@ export default function MoviesVideoPlayer({ route }) {
     <View style={styles.container}>
       <StatusBar hidden />
       <View style={styles.videoWrapper}>
-        <TouchableOpacity style={styles.backgroundVideo}>
+        <View style={styles.backgroundVideo}>
           <Video
             source={{
               uri: 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -115,51 +113,47 @@ export default function MoviesVideoPlayer({ route }) {
               },
             ]}
           >
-            {!videoPressed ? (
-              <View></View>
-            ) : (
-              <View style={styles.controlsContainer}>
+            <View style={[styles.controlsContainer, { opacity: videoPressed ? 1 : 0 }]}>
+              <TouchableOpacity
+                style={styles.iconButton}
+                onPress={() => moveBackward()}
+              >
+                <Image
+                  source={require('../assests/backward.png')}
+                  style={styles.controlIcon}
+                />
+              </TouchableOpacity>
+              {isPaused ? (
                 <TouchableOpacity
                   style={styles.iconButton}
-                  onPress={() => moveBackward()}
+                  onPress={() => playVideo()}
                 >
                   <Image
-                    source={require('../assests/backward.png')}
-                    style={styles.controlIcon}
+                    source={require('../assests/play-button-arrowhead.png')}
+                    style={styles.controlIconLarge}
                   />
                 </TouchableOpacity>
-                {isPaused ? (
-                  <TouchableOpacity
-                    style={styles.iconButton}
-                    onPress={() => playVideo()}
-                  >
-                    <Image
-                      source={require('../assests/play-button-arrowhead.png')}
-                      style={styles.controlIconLarge}
-                    />
-                  </TouchableOpacity>
-                ) : (
-                  <TouchableOpacity
-                    style={styles.iconButton}
-                    onPress={() => pauseVideo()}
-                  >
-                    <Image
-                      source={require('../assests/pause.png')}
-                      style={styles.controlIconLarge}
-                    />
-                  </TouchableOpacity>
-                )}
+              ) : (
                 <TouchableOpacity
                   style={styles.iconButton}
-                  onPress={() => moveForward()}
+                  onPress={() => pauseVideo()}
                 >
                   <Image
-                    source={require('../assests/forward.png')}
-                    style={styles.controlIcon}
+                    source={require('../assests/pause.png')}
+                    style={styles.controlIconLarge}
                   />
                 </TouchableOpacity>
-              </View>
-            )}
+              )}
+              <TouchableOpacity
+                style={styles.iconButton}
+                onPress={() => moveForward()}
+              >
+                <Image
+                  source={require('../assests/forward.png')}
+                  style={styles.controlIcon}
+                />
+              </TouchableOpacity>
+            </View>
 
             <View
               style={[
@@ -236,7 +230,7 @@ export default function MoviesVideoPlayer({ route }) {
               )}
             </View>
           </TouchableOpacity>
-        </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

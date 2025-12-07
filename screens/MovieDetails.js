@@ -5,16 +5,11 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
-  ScrollView,
   Animated,
   Dimensions,
-  Alert,
 } from 'react-native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
-import Orientation from 'react-native-orientation-locker';
-import { useNavigation } from '@react-navigation/native';
 import { similarMoviesAPI } from '../api/similarMoviesAPI';
-import SystemNavigationBar from 'react-native-system-navigation-bar';
 import SimilarMovies from '../components/SimilarMovies';
 import LinearGradient from 'react-native-linear-gradient';
 import { useTheme } from '../context/ThemeContext';
@@ -28,7 +23,6 @@ import {
 import {
   updateWatchedMovie,
   removeWatchedMovie,
-  getWatchtime,
   isWatchedMvs,
 } from '../api/userWatchtimeAPI';
 import { Snackbar } from 'react-native-paper';
@@ -138,8 +132,6 @@ export default function MovieDetails({ route, navigation }) {
 
   const goBack = () => {
     navigation.goBack();
-    Orientation.lockToPortrait();
-    SystemNavigationBar.fullScreen(false);
   };
 
   const playMovie = (movieID, movieLink, movieTitle) => {

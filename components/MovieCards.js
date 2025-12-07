@@ -18,9 +18,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function MovieCards({ refresh, genreID, label, movies }) {
   const navigation = useNavigation()
-  const [moviesList, setMoviesList] = useState(
-    Array.isArray(movies) ? movies : [],
-  );
+  const [moviesList, setMoviesList] = useState(movies);
   const { colors } = useTheme();
   const styles = getStyles(colors);
   const gradientColors = ['transparent', hexToRGBA(colors.background, 1)];
@@ -30,21 +28,11 @@ export default function MovieCards({ refresh, genreID, label, movies }) {
   };
 
   useEffect(() => {
-    let isMounted = true;
     const fetchMovies = async () => {
-      if (Array.isArray(movies)) {
-        setMoviesList(movies);
-        return;
-      }
       const fetchedMovies = await moviesListAPI(genreID);
-      if (isMounted) {
-        setMoviesList(Array.isArray(fetchedMovies) ? fetchedMovies : []);
-      }
+      setMoviesList(fetchedMovies);
     };
     fetchMovies();
-    return () => {
-      isMounted = false;
-    };
   }, [genreID, refresh, movies]);
 
 
@@ -52,7 +40,6 @@ export default function MovieCards({ refresh, genreID, label, movies }) {
     return (
       <TouchableOpacity
         onPress={() => handleMovieDetails(item)}
-        activeOpacity={0.9}
         style={styles.movieCardContainer}
       >
         <View style={styles.cardWrapper}>
@@ -79,19 +66,13 @@ export default function MovieCards({ refresh, genreID, label, movies }) {
     );
   };
 
-  const renderMovieCards = ({ item }) => <MovieCard item={item} />;
-
-  if (!moviesList || moviesList.length === 0) {
-    return null;
-  }
-
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
       <FlatList
         data={moviesList.slice(0, 10)}
         keyExtractor={item => item._id}
-        renderItem={renderMovieCards}
+        renderItem={MovieCard}
         windowSize={2}
         horizontal
         showsHorizontalScrollIndicator={false}
