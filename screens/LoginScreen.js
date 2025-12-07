@@ -24,7 +24,7 @@ export default function LoginScreen({ navigation }) {
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { colors, textInputTheme } = useTheme();
-  const styles = useMemo(() => getStyles(colors), [colors]);
+  const styles = getStyles(colors);
 
   useEffect(() => {
     const checkauthuser = async () => {
