@@ -12,14 +12,12 @@ import {
 } from 'react-native';
 import React, { useState, useEffect, useMemo } from 'react';
 import { userloginAPI, checkAuthAPI } from '../api/userloginAPI';
-import { useNavigation } from '@react-navigation/native';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import { TextInput } from 'react-native-paper';
 import { useTheme } from '../context/ThemeContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginScreen() {
-  const navigation = useNavigation();
+export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [validation, setValidation] = useState(true);
@@ -64,10 +62,10 @@ export default function LoginScreen() {
       });
     }
   };
+
   const handleRegister = () => {
     navigation.navigate('RegisterScreen');
   };
-
 
   return (
     <View style={styles.container}>

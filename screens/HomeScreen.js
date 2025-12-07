@@ -35,8 +35,7 @@ export default function HomeScreen({ navigation, route }) {
   const [refreshing, setRefreshing] = useState(false);
   const [genreSections, setGenreSections] = useState([]);
 
-  //Hàm không bị tạo lại khi rerender do hàm bị cấp bộ nhớ mỗi khi tạo, tiết kiệm bộ nhớ
-  const fetchLatestMovies = useCallback(async () => {
+  const fetchLatestMovies = async () => {
     try {
       const movies = await moviesListAPI();
       const listId = await mylistID();
@@ -50,9 +49,9 @@ export default function HomeScreen({ navigation, route }) {
       setMessage('Error fetching movies list');
       setVisible(true);
     }
-  }, []);
+  };
 
-  const fetchGenreSections = useCallback(async () => {
+  const fetchGenreSections = async () => {
     try {
       const sections = await Promise.all(
         GENRE_CONFIG.map(async genre => {
@@ -69,12 +68,12 @@ export default function HomeScreen({ navigation, route }) {
       setMessage('Error fetching genre sections');
       setVisible(true);
     }
-  }, []);
+  };
 
   useEffect(() => {
     fetchLatestMovies();
     fetchGenreSections();
-  }, [fetchLatestMovies, fetchGenreSections]); //Nguyen tac react: Hàm useCallback sử dụng biến/hàm nào bên trong nó, thì phải khai báo biến/hàm đó.
+  }, []);
 
   const handleAddToList = async (item) => {
     try {
@@ -131,7 +130,7 @@ export default function HomeScreen({ navigation, route }) {
     navigation.navigate('MovieDetails', { movie });
   };
 
-  const onRefresh = useCallback(async () => {
+  const onRefresh = async () => {
     setRefreshing(true);
     try {
       await Promise.all([fetchLatestMovies(), fetchGenreSections()]); //Chạy 2 hàm song song thay vì chạy từng hàm để hàm sau chờ hàm trước. Nhưng 1 hàm lỗi, sẽ ko chạy cái sau.
@@ -142,8 +141,7 @@ export default function HomeScreen({ navigation, route }) {
     } finally {
       setRefreshing(false);
     }
-  }, [fetchGenreSections, fetchLatestMovies]); //Nguyen tac react: Hàm useCallback sử dụng biến/hàm nào bên trong nó, thì phải khai báo biến/hàm đó.
-
+  };
   return (
     <View style={styles.container}>
       <StatusBar

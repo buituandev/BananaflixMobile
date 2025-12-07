@@ -62,7 +62,6 @@ export default function MovieDetails({ route, navigation }) {
     const fetchWatchedStatus = async () => {
       try {
         const response = await isWatchedMvs(movie._id);
-        console.log('isWatchedMvs response:', response);
         setIsWatched(response.isInWatchedMovies);
       } catch (error) {
         setIsWatched(false);

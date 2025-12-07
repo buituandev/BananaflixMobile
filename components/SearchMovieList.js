@@ -13,9 +13,10 @@ import { hexToRGBA } from '../utils/colorUtils';
 import { useNavigation } from '@react-navigation/native';
 import { getMovieRating, getMovieTitle } from '../utils/movieUtils';
 
-export default function SearchMovieList({ navigation, data }) {
+export default function SearchMovieList({ data }) {
   const { colors } = useTheme();
   const styles = getStyles(colors);
+  const navigation = useNavigation();
 
   const formatReleaseDate = dateString => {
     const year = new Date(dateString).getFullYear();

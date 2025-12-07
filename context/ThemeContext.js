@@ -49,20 +49,14 @@ const createTextInputTheme = (palette, paperTheme, colors) => ({
 export const ThemeProvider = ({ children }) => {
   const palette = useMaterialYouPalette();
   const paperTheme = usePaperTheme();
-  const colors = useMemo(() => createThemeColors(palette), [palette]);
-  const textInputTheme = useMemo(
-    () => createTextInputTheme(palette, paperTheme, colors),
-    [palette, paperTheme, colors],
-  );
+  const colors = createThemeColors(palette);
+  const textInputTheme = createTextInputTheme(palette, paperTheme, colors);
 
-  const value = useMemo(
-    () => ({
-      palette,
-      colors,
-      textInputTheme,
-    }),
-    [palette, colors, textInputTheme],
-  );
+  const value = {
+    palette,
+    colors,
+    textInputTheme,
+  }
 
   return (
     <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>

@@ -20,9 +20,6 @@ const { width } = Dimensions.get('window');
 
 const ITEM_WIDTH = (width - (PADDING * 2) - GAP) / 2;
 
-
-
-
 export default function SimilarMovies({ similarMoviesList }) {
   const navigation = useNavigation();
   const { colors } = useTheme();
